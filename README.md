@@ -1,11 +1,13 @@
-TonnetzViz
+TonnetzViz but lot more colors
 ==========
+
+This stuff is made to make playing on midi devices a little bit more fun. The colors change. Seizure alert!
 
 TonnetzViz is a web-based music visualizer that receives MIDI input and
 visualizes it in real time using the [Tonnetz][1]. It can
 also be controlled using the computer keyboard.
 
-[**Try it now!**](https://cifkao.github.io/tonnetz-viz/)
+[**Try it now!**](https://bakaiadam.github.io/tonnetz-viz/)
 
 ![screenshot](images/screenshot-apollo.png)
 
