@@ -336,6 +336,71 @@ var tonnetz = (function() {
       }
     }
 
+var ff=function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+var g=ff();
+var g2=ff();
+
+for (var tone=0; tone<12; tone++) {
+      var c = tones[tone].cache;
+
+      var leftNeighbor = (tone+3)%12;
+      var rightNeighbor = (tone+4)%12;
+      var topNeighbor = (tone+7)%12;
+
+      c.leftPos = getNeighborXYDiff(tone, leftNeighbor);
+      c.rightPos = getNeighborXYDiff(tone, rightNeighbor);
+      c.topPos = getNeighborXYDiff(tone, topNeighbor);
+
+      c.leftState = tones[leftNeighbor].state;
+      c.rightState = tones[rightNeighbor].state;
+      c.topState = tones[topNeighbor].state;
+
+      var thisOn = (tones[tone].state != STATE_OFF);
+      var leftOn = (c.leftState != STATE_OFF);
+      var rightOn = (c.rightState != STATE_OFF);
+      var topOn = (c.topState != STATE_OFF);
+
+      // Fill faces
+      for (var tone2=0;tone2<12;tone2++)
+      for (var i=0; i<toneGrid[tone2].length; i++) {
+        setTranslate(ctx, toneGrid[tone2][i].x, toneGrid[tone2][i].y);
+
+        var minorOn = false, majorOn = false;
+        if (thisOn && topOn) {
+          if (leftOn || rightOn) { // left face (minor triad)
+            minorOn = true;
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(c.topPos.x, c.topPos.y);
+            ctx.lineTo(c.leftPos.x, c.leftPos.y);
+            ctx.closePath();
+            ctx.fillStyle = g;
+            ctx.fill();
+          }
+          if (rightOn || leftOn) { // right face (major triad)
+            majorOn = true;
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(c.topPos.x, c.topPos.y);
+            ctx.lineTo(c.rightPos.x, c.rightPos.y);
+            ctx.closePath();
+            ctx.fillStyle = g;
+            ctx.fill();
+          }
+        }
+}
+}
+
+
+
+
     if (module.unitCellVisible){
       drawUnitCell(ctx);
     };
