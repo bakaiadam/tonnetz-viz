@@ -7,7 +7,7 @@ TonnetzViz is a web-based music visualizer that receives MIDI input and
 visualizes it in real time using the [Tonnetz][1]. It can
 also be controlled using the computer keyboard.
 
-[**Try it now!**](https://bakaiadam.github.io/tonnetz-viz/)
+[**Try it now!**](https://bakaiadam.github.io/tonnetz-viz/index.html)
 
 ![screenshot](images/screenshot-apollo.png)
 
